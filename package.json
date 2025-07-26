@@ -2,8 +2,8 @@
     "name": "react-secure-captcha",
     "version": "1.0.5",
     "description": "A professional customizable React Captcha component with Canvas and Math modes, animations with Framer Motion, and toast notifications via Sonner.",
-    "main": "dist/index.umd.js",
-    "module": "dist/index.es.js",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
