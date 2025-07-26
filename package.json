@@ -2,15 +2,15 @@
     "name": "react-secure-captcha",
     "version": "1.0.3",
     "description": "A professional customizable React Captcha component with Canvas and Math modes, animations with Framer Motion, and toast notifications via Sonner.",
-    "main": "dist/index.js",
-    "module": "dist/index.esm.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/react-smart-captcha.umd.js",
+    "module": "dist/react-smart-captcha.es.js",
+    "types": "dist/react-smart-captcha.d.ts",
     "files": [
         "dist"
     ],
     "scripts": {
         "dev": "vite",
-        "build": "tsc && vite build",
+        "build": "tsup src/index.ts --dts --format esm,cjs --out-dir dist --clean",
         "lint": "eslint . --ext .ts,.tsx"
     },
     "peerDependencies": {
