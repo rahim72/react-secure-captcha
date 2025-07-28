@@ -1,6 +1,6 @@
 {
     "name": "react-secure-captcha",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "A professional customizable React Captcha component with Canvas and Math modes, animations with Framer Motion, and toast notifications via Sonner.",
     "main": "dist/index.js",
     "module": "dist/index.mjs",
@@ -46,11 +46,11 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/rahim72/react-smart-captcha.git"
+        "url": "https://github.com/rahim72/react-secure-captcha.git"
     },
-    "homepage": "https://github.com/rahim72/react-smart-captcha#readme",
+    "homepage": "https://github.com/rahim72/react-secure-captcha#readme",
     "bugs": {
-        "url": "https://github.com/rahim72/react-smart-captcha/issues"
+        "url": "https://github.com/rahim72/react-secure-captcha/issues"
     },
     "author": "Rahim Hosseini",
     "license": "MIT"

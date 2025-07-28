@@ -10,6 +10,7 @@ interface MathCaptchaProps {
   fontFamily?: string;
   backgroundColor?: string;
   textColor?: string;
+  className?: string;
 }
 
 const MathCaptcha: React.FC<MathCaptchaProps> = ({
@@ -20,11 +21,12 @@ const MathCaptcha: React.FC<MathCaptchaProps> = ({
   fontFamily = "Arial",
   backgroundColor = "#f9f9f9",
   textColor = "#333",
+  className = ""
 }) => {
   return (
     <div
       style={{ width, height, backgroundColor }}
-      className="flex items-center justify-center rounded-md border border-gray-300 select-none"
+      className={`flex items-center justify-center rounded-md border border-gray-300 select-none ${className}`}
     >
       <span
         style={{ fontSize, fontFamily, color: textColor }}

@@ -68,6 +68,7 @@ export default function CaptchaExample() {
 | `autoValidate`      | `boolean`                    | Automatically validate input on complete input       | `true`              |
 | `animationDuration` | `number`                     | Duration of animations in seconds                    | `0.4`               |
 | `onValidate`        | `(isValid: boolean) => void` | Callback fired after validation, with success status | `undefined`         |
+| `className`         | `string`                     | Customize Tailwind Css                               | `undefined`         |
 
 ## License
 
