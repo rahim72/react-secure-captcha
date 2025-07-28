@@ -25,6 +25,7 @@ interface CaptchaProps {
   autoValidate?: boolean;
   animationDuration?: number;
   onValidate?: (isValid: boolean) => void;
+  className?: string;
 }
 
 const generateRandomText = (length: number) => {
@@ -60,7 +61,8 @@ const Captcha: React.FC<CaptchaProps> = ({
   successMessage = "کد صحیح است",
   autoValidate = true,
   animationDuration = 0.4,
-  onValidate
+  onValidate,
+  className = ""
 }) => {
   const [captchaText, setCaptchaText] = useState("");
   const [mathAnswer, setMathAnswer] = useState("");
@@ -132,8 +134,8 @@ const Captcha: React.FC<CaptchaProps> = ({
   };
 
   return (
-    <div className="flex flex-col gap-3 w-full max-w-sm">
-      <div className="flex flex-row gap-2 items-center">
+    <div className={`flex flex-col gap-3 w-full max-w-sm`}>
+      <div className={`flex flex-row gap-2 items-center ${className}`}>
         <input
           type="text"
           value={inputValue}
@@ -142,47 +144,49 @@ const Captcha: React.FC<CaptchaProps> = ({
           className="flex-1 border rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none"
           aria-label="captcha input"
         />
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={key}
-            initial={{ opacity: 0, rotate: -5 }}
-            animate={{ opacity: 1, rotate: 0 }}
-            exit={{ opacity: 0, rotate: 5 }}
-            transition={{ duration: animationDuration }}
+        <div className="flex flex-row gap-2 items-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, rotate: -5 }}
+              animate={{ opacity: 1, rotate: 0 }}
+              exit={{ opacity: 0, rotate: 5 }}
+              transition={{ duration: animationDuration }}
+            >
+              {type === "canvas" ? (
+                <CanvasCaptcha
+                  key={key}
+                  text={captchaText}
+                  width={width}
+                  height={height}
+                  fontSize={fontSize}
+                  fontFamily={fontFamily}
+                  backgroundColor={backgroundColor}
+                  textColor={textColor}
+                  noise={noise}
+                />
+              ) : (
+                <MathCaptcha
+                  question={captchaText}
+                  width={width}
+                  height={height}
+                  fontSize={fontSize}
+                  fontFamily={fontFamily}
+                  backgroundColor={backgroundColor}
+                  textColor={textColor}
+                />
+              )}
+            </motion.div>
+          </AnimatePresence>
+          <button
+            type="button"
+            onClick={refreshCaptcha}
+            className="p-2 hover:bg-gray-100 rounded transition"
+            aria-label="refresh captcha"
           >
-            {type === "canvas" ? (
-              <CanvasCaptcha
-                key={key}
-                text={captchaText}
-                width={width}
-                height={height}
-                fontSize={fontSize}
-                fontFamily={fontFamily}
-                backgroundColor={backgroundColor}
-                textColor={textColor}
-                noise={noise}
-              />
-            ) : (
-              <MathCaptcha
-                question={captchaText}
-                width={width}
-                height={height}
-                fontSize={fontSize}
-                fontFamily={fontFamily}
-                backgroundColor={backgroundColor}
-                textColor={textColor}
-              />
-            )}
-          </motion.div>
-        </AnimatePresence>
-        <button
-          type="button"
-          onClick={refreshCaptcha}
-          className="p-2 hover:bg-gray-100 rounded transition"
-          aria-label="refresh captcha"
-        >
-          <LuRefreshCw className="w-6 h-6 text-gray-700" />
-        </button>
+            <LuRefreshCw className="w-6 h-6 text-gray-700" />
+          </button>
+        </div>
       </div>
       {error && (
         <motion.span

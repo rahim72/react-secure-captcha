@@ -11,6 +11,7 @@ interface CanvasCaptchaProps {
   backgroundColor?: string;
   textColor?: string;
   noise?: number;
+  className?: string;
 }
 
 const CanvasCaptcha: React.FC<CanvasCaptchaProps> = ({
