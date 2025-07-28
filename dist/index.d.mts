@@ -17,6 +17,7 @@ interface CaptchaProps {
     autoValidate?: boolean;
     animationDuration?: number;
     onValidate?: (isValid: boolean) => void;
+    className?: string;
 }
 declare const Captcha: React.FC<CaptchaProps>;
 
@@ -29,6 +30,7 @@ interface CanvasCaptchaProps {
     backgroundColor?: string;
     textColor?: string;
     noise?: number;
+    className?: string;
 }
 declare const CanvasCaptcha: React.FC<CanvasCaptchaProps>;
 
@@ -40,6 +42,7 @@ interface MathCaptchaProps {
     fontFamily?: string;
     backgroundColor?: string;
     textColor?: string;
+    className?: string;
 }
 declare const MathCaptcha: React.FC<MathCaptchaProps>;
 

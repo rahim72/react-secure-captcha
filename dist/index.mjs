@@ -78,13 +78,14 @@ var MathCaptcha = ({
   fontSize = 28,
   fontFamily = "Arial",
   backgroundColor = "#f9f9f9",
-  textColor = "#333"
+  textColor = "#333",
+  className = ""
 }) => {
   return /* @__PURE__ */ jsx2(
     "div",
     {
       style: { width, height, backgroundColor },
-      className: "flex items-center justify-center rounded-md border border-gray-300 select-none",
+      className: `flex items-center justify-center rounded-md border border-gray-300 select-none ${className}`,
       children: /* @__PURE__ */ jsx2(
         "span",
         {
@@ -8109,7 +8110,8 @@ var Captcha = ({
   successMessage = "\u06A9\u062F \u0635\u062D\u06CC\u062D \u0627\u0633\u062A",
   autoValidate = true,
   animationDuration = 0.4,
-  onValidate
+  onValidate,
+  className = ""
 }) => {
   const [captchaText, setCaptchaText] = useState2("");
   const [mathAnswer, setMathAnswer] = useState2("");
@@ -8168,65 +8170,73 @@ var Captcha = ({
       validateCaptcha(val);
     }
   };
-  return /* @__PURE__ */ jsxs2("div", { className: "flex flex-col gap-3 w-full max-w-sm", children: [
-    /* @__PURE__ */ jsxs2("div", { className: "flex flex-row gap-2 items-center", children: [
-      /* @__PURE__ */ jsx8(
-        "input",
-        {
-          type: "text",
-          value: inputValue,
-          onChange: handleInputChange,
-          placeholder,
-          className: "flex-1 border rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none",
-          "aria-label": "captcha input"
-        }
-      ),
-      /* @__PURE__ */ jsx8(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsx8(
-        motion.div,
-        {
-          initial: { opacity: 0, rotate: -5 },
-          animate: { opacity: 1, rotate: 0 },
-          exit: { opacity: 0, rotate: 5 },
-          transition: { duration: animationDuration },
-          children: type === "canvas" ? /* @__PURE__ */ jsx8(
-            CanvasCaptcha_default,
+  return /* @__PURE__ */ jsxs2("div", { className: `flex flex-col gap-3 w-full max-w-sm`, children: [
+    /* @__PURE__ */ jsxs2(
+      "div",
+      {
+        className: `flex flex-col lg:flex-row gap-2 items-center ${className}`,
+        children: [
+          /* @__PURE__ */ jsx8(
+            "input",
             {
-              text: captchaText,
-              width,
-              height,
-              fontSize,
-              fontFamily,
-              backgroundColor,
-              textColor,
-              noise
-            },
-            key
-          ) : /* @__PURE__ */ jsx8(
-            MathCaptcha_default,
-            {
-              question: captchaText,
-              width,
-              height,
-              fontSize,
-              fontFamily,
-              backgroundColor,
-              textColor
+              type: "text",
+              value: inputValue,
+              onChange: handleInputChange,
+              placeholder,
+              className: "flex-1 border rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none",
+              "aria-label": "captcha input"
             }
-          )
-        },
-        key
-      ) }),
-      /* @__PURE__ */ jsx8(
-        "button",
-        {
-          type: "button",
-          onClick: refreshCaptcha,
-          className: "p-2 hover:bg-gray-100 rounded transition",
-          "aria-label": "refresh captcha",
-          children: /* @__PURE__ */ jsx8(LuRefreshCw, { className: "w-6 h-6 text-gray-700" })
-        }
-      )
-    ] }),
+          ),
+          /* @__PURE__ */ jsxs2("div", { className: "flex flex-row gap-2 items-center", children: [
+            /* @__PURE__ */ jsx8(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ jsx8(
+              motion.div,
+              {
+                initial: { opacity: 0, rotate: -5 },
+                animate: { opacity: 1, rotate: 0 },
+                exit: { opacity: 0, rotate: 5 },
+                transition: { duration: animationDuration },
+                children: type === "canvas" ? /* @__PURE__ */ jsx8(
+                  CanvasCaptcha_default,
+                  {
+                    text: captchaText,
+                    width,
+                    height,
+                    fontSize,
+                    fontFamily,
+                    backgroundColor,
+                    textColor,
+                    noise
+                  },
+                  key
+                ) : /* @__PURE__ */ jsx8(
+                  MathCaptcha_default,
+                  {
+                    question: captchaText,
+                    width,
+                    height,
+                    fontSize,
+                    fontFamily,
+                    backgroundColor,
+                    textColor
+                  }
+                )
+              },
+              key
+            ) }),
+            /* @__PURE__ */ jsx8(
+              "button",
+              {
+                type: "button",
+                onClick: refreshCaptcha,
+                className: "p-2 hover:bg-gray-100 rounded transition",
+                "aria-label": "refresh captcha",
+                children: /* @__PURE__ */ jsx8(LuRefreshCw, { className: "w-6 h-6 text-gray-700" })
+              }
+            )
+          ] })
+        ]
+      }
+    ),
     error && /* @__PURE__ */ jsx8(
       motion.span,
       {

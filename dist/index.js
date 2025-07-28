@@ -110,13 +110,14 @@ var MathCaptcha = ({
   fontSize = 28,
   fontFamily = "Arial",
   backgroundColor = "#f9f9f9",
-  textColor = "#333"
+  textColor = "#333",
+  className = ""
 }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
     "div",
     {
       style: { width, height, backgroundColor },
-      className: "flex items-center justify-center rounded-md border border-gray-300 select-none",
+      className: `flex items-center justify-center rounded-md border border-gray-300 select-none ${className}`,
       children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(
         "span",
         {
@@ -8141,7 +8142,8 @@ var Captcha = ({
   successMessage = "\u06A9\u062F \u0635\u062D\u06CC\u062D \u0627\u0633\u062A",
   autoValidate = true,
   animationDuration = 0.4,
-  onValidate
+  onValidate,
+  className = ""
 }) => {
   const [captchaText, setCaptchaText] = (0, import_react25.useState)("");
   const [mathAnswer, setMathAnswer] = (0, import_react25.useState)("");
@@ -8200,65 +8202,73 @@ var Captcha = ({
       validateCaptcha(val);
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "flex flex-col gap-3 w-full max-w-sm", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "flex flex-row gap-2 items-center", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-        "input",
-        {
-          type: "text",
-          value: inputValue,
-          onChange: handleInputChange,
-          placeholder,
-          className: "flex-1 border rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none",
-          "aria-label": "captcha input"
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-        motion.div,
-        {
-          initial: { opacity: 0, rotate: -5 },
-          animate: { opacity: 1, rotate: 0 },
-          exit: { opacity: 0, rotate: 5 },
-          transition: { duration: animationDuration },
-          children: type === "canvas" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-            CanvasCaptcha_default,
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: `flex flex-col gap-3 w-full max-w-sm`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+      "div",
+      {
+        className: `flex flex-col lg:flex-row gap-2 items-center ${className}`,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+            "input",
             {
-              text: captchaText,
-              width,
-              height,
-              fontSize,
-              fontFamily,
-              backgroundColor,
-              textColor,
-              noise
-            },
-            key
-          ) : /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-            MathCaptcha_default,
-            {
-              question: captchaText,
-              width,
-              height,
-              fontSize,
-              fontFamily,
-              backgroundColor,
-              textColor
+              type: "text",
+              value: inputValue,
+              onChange: handleInputChange,
+              placeholder,
+              className: "flex-1 border rounded-md p-2 text-sm focus:ring-2 focus:ring-blue-400 outline-none",
+              "aria-label": "captcha input"
             }
-          )
-        },
-        key
-      ) }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
-        "button",
-        {
-          type: "button",
-          onClick: refreshCaptcha,
-          className: "p-2 hover:bg-gray-100 rounded transition",
-          "aria-label": "refresh captcha",
-          children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_lu.LuRefreshCw, { className: "w-6 h-6 text-gray-700" })
-        }
-      )
-    ] }),
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { className: "flex flex-row gap-2 items-center", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(AnimatePresence, { mode: "wait", children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+              motion.div,
+              {
+                initial: { opacity: 0, rotate: -5 },
+                animate: { opacity: 1, rotate: 0 },
+                exit: { opacity: 0, rotate: 5 },
+                transition: { duration: animationDuration },
+                children: type === "canvas" ? /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+                  CanvasCaptcha_default,
+                  {
+                    text: captchaText,
+                    width,
+                    height,
+                    fontSize,
+                    fontFamily,
+                    backgroundColor,
+                    textColor,
+                    noise
+                  },
+                  key
+                ) : /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+                  MathCaptcha_default,
+                  {
+                    question: captchaText,
+                    width,
+                    height,
+                    fontSize,
+                    fontFamily,
+                    backgroundColor,
+                    textColor
+                  }
+                )
+              },
+              key
+            ) }),
+            /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+              "button",
+              {
+                type: "button",
+                onClick: refreshCaptcha,
+                className: "p-2 hover:bg-gray-100 rounded transition",
+                "aria-label": "refresh captcha",
+                children: /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(import_lu.LuRefreshCw, { className: "w-6 h-6 text-gray-700" })
+              }
+            )
+          ] })
+        ]
+      }
+    ),
     error && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
       motion.span,
       {
