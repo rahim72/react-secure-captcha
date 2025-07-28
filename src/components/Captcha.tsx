@@ -135,7 +135,9 @@ const Captcha: React.FC<CaptchaProps> = ({
 
   return (
     <div className={`flex flex-col gap-3 w-full max-w-sm`}>
-      <div className={`flex flex-row gap-2 items-center ${className}`}>
+      <div
+        className={`flex flex-col lg:flex-row gap-2 items-center ${className}`}
+      >
         <input
           type="text"
           value={inputValue}
